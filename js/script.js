@@ -1,6 +1,35 @@
-"use strict";
+ "use strict";
 
-/* let a = 5,
+let str = 'some';
+let strObj = new String(str);
+
+/* console.log(typeof(str));
+console.log(typeof(strObj)); */
+
+console.dir([1,2,3]);
+
+const soldier = {
+    health: 400,
+    armor: 100,
+    sayHello: function() {
+        console.log('hello');
+    }
+};
+
+const john = Object.create(soldier);
+
+/* const john = {
+    health: 100
+};
+
+ john.__proto__ = soldier; 
+
+Object.setPrototypeOf(john, soldier);
+
+ console.log(john); */
+john.sayHello();
+/*
+let a = 5,
     b = a;
 
 b = b + 5;
@@ -18,7 +47,7 @@ const obj = {
 copy.a = 10;
 
 console.log(copy);
-console.log(obj); */
+console.log(obj); 
 
 function copy(mainObj) {
     let objCopy = {};
@@ -45,8 +74,8 @@ const newNumbers = copy(numbers);
 newNumbers.a = 10;
 newNumbers.c.x = 10;
 
-/* console.log(newNumbers);
-console.log(numbers); */
+console.log(newNumbers);
+console.log(numbers); 
 
 const add = {
     d: 17,
@@ -57,8 +86,8 @@ const clone = Object.assign({}, add);
 
 clone.d = 20;
 
-/* console.log(add);
-console.log(clone); */
+ console.log(add);
+console.log(clone);
 
 const oldArray = ['a','b','c'];
 const newArray = oldArray.slice();
@@ -92,7 +121,7 @@ const q = {
     two: 2
 };
 
-const newObj = {...q};
+const newObj = {...q}; */
 
 /*  const arr = [2, 13, 26, 8, 10];
 arr.sort(compareNum);
