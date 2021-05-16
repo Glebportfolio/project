@@ -1,5 +1,25 @@
  "use strict";
 
+function hello() {
+    console.log('Hello world');
+}
+
+hello();
+
+function hi() {
+    console.log('Say hi!');
+}
+
+hi();
+
+const arr = [1, 14, 4, 30, 54],
+      sorted = arr.sort(compareNum);
+
+function compareNum(a, b) {
+    return a - b;
+}
+
+console.log(sorted);
 /* let str = 'some';
 let strObj = new String(str);
 
@@ -227,7 +247,7 @@ function done() {
 learnJS('JavaScript', done); */
 
 
-const personalMovieDB = {
+/* const personalMovieDB = {
     count: 0,
     movies: {},
     actors: {},
@@ -279,14 +299,14 @@ const personalMovieDB = {
     },
     writeYourGenres: function() {
         for (let i = 1; i < 2; i++) {
-/*             let genre = prompt(`Ваш любимый жанр под номером ${i}`);
+             let genre = prompt(`Ваш любимый жанр под номером ${i}`);
 
             if(genre === '' || genre === null) {
                 console.log('Вы ввели некоректные данные или не ввели их вовсе ');
                 i--;
             } else {
                 personalMovieDB.genres[i - 1] = genre;
-            }  */
+            }  
             
             let genres = prompt(`Введите ваши любимые жанры через запятую`).toLowerCase();
 
@@ -304,3 +324,4 @@ const personalMovieDB = {
         });
     }
 };
+ */
