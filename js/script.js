@@ -1,5 +1,16 @@
  "use strict";
 
+const box = document.getElementById('box');
+
+console.log(box);
+
+const btns = document.getElementsByTagName('button');
+
+console.log(btns);
+
+
+
+
 // let x = 5; alert( x++);
 
 // [ ] + false - null + true
@@ -30,7 +41,7 @@
 
 // console.log('Ежик' > 'яблоко');
 
-console.log(0 || '' || 2 || undefined) || true || false;
+/* console.log(0 || '' || 2 || undefined) || true || false; */
 
 
 /* // to string
