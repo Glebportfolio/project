@@ -10,9 +10,9 @@
 4) Список фильмов на странице сформировать на основании данных из этого JS файла.
 Отсортировать их по алфавиту 
 
-5) Добавить нумерацию выведенных фильмов */
+5) Добавить нумерацию выведенных фильмов
 
-/* 'use strict';
+ 'use strict';
 
 const movieDB = {
     movies: [
@@ -48,32 +48,32 @@ movieDB.movies.forEach((film, i) => {
         <div class="delete"></div>
     </li>
     `;
-});  */
+});  
 
 
 const btns = document.querySelector('button'),
       overlay = document.querySelector('.overlay');
-/* btn.onclick = function() {
+ btn.onclick = function() {
     alert('click');
 };
 
 btn.onclick = function() {
     alert('Second click');
 };
- */
+ 
 
 // let i = 0
 const deleteElement = (e) => {
     console.log(e.target);
     console.log(e.type);
-/*     i++;
+    i++;
     if (i ==1) {
         btn.removeEventListener('click', deleteElement);
-    } */
+    } 
 };
 
-/* btn.addEventListener('click', deleteElement);
-overlay.addEventListener('click', deleteElement); */
+ btn.addEventListener('click', deleteElement);
+overlay.addEventListener('click', deleteElement); 
 
 btns.forEach(btn => {
     btn.addEventListener('click', deleteElement, {once: true});
@@ -86,9 +86,24 @@ link.addEventListener('click', function(event){
 
     console.log(event.target);
 });
+ */
 
+// console.log(document.head);
+// console.log(document.documentElement);
+// console.log(document.body.childNodes);
+// console.log(document.body.firstChild);
+// console.log(document.body.firstElementChild);
+// console.log(document.body.lastChild);
 
+// console.log(document.querySelector('current').parentNode.parentNode);
+// console.log(document.querySelector('current').parentElement);
 
+// console.log(document.querySelector('[data-current="3]').nextElementSibling);
 
+for (let node of document.body.childNodes) {
+    if (node.nodeName == '#text') {
+        continue;
+    }
 
-
+    console.log(node);
+}
