@@ -1,109 +1,102 @@
-/* Задания на урок:
+/*1)Реализовать функционал, что после заполнения формы и нажатия кнопки "Подтвердить" - 
+новый фильм добавляется в список. Страница не должна перезагружаться.
+Новый фильм должен добавляться в movieDB.movies.
+Для получения доступа к значению input - обращаемся к нему как input.value;
+P.S. Здесь есть несколько вариантов решения задачи, принимается любой, но рабочий.
+2) Если название фильма больше, чем 21 символ - обрезать его и добавить три точки
+3) При клике на мусорную корзину - элемент будет удаляться из списка (сложно)
+4) Если в форме стоит галочка "Сделать любимым" - в консоль вывести сообщение: 
+"Добавляем любимый фильм"
+5) Фильмы должны быть отсортированы по алфавиту */
 
-1) Удалить все рекламные блоки со страницы (правая часть сайта)
+'use strict';
 
-2) Изменить жанр фильма, поменять "комедия" на "драма"
+document.addEventListener('DOMContentLoaded', () => {
 
-3) Изменить задний фон постера с фильмом на изображение "bg.jpg". Оно лежит в папке img.
-Реализовать только при помощи JS
+    const movieDB = {
+        movies: [
+            "Логан",
+            "Лига справедливости",
+            "Ла-ла лэнд",
+            "Одержимость",
+            "Скотт Пилигрим против..."
+        ]
+    };
 
-4) Список фильмов на странице сформировать на основании данных из этого JS файла.
-Отсортировать их по алфавиту 
+    const adv = document.querySelectorAll('.promo__adv img'),
+        poster = document.querySelector('.promo__bg'),
+        genre = poster.querySelector('.promo__genre'),
+        movieList = document.querySelector('.promo__interactive-list'),
+        addForm = document.querySelector('form.add'),
+        addInput = addForm.querySelector('.adding__input'),
+        checkbox = addForm.querySelector('[type="checkbox"]');
 
-5) Добавить нумерацию выведенных фильмов
+    addForm.addEventListener('submit', (event) => {
+        event.preventDefault();
 
- 'use strict';
+        let newFilm = addInput.value;
+        const favorite = checkbox.checked;
 
-const movieDB = {
-    movies: [
-        "Логан",
-        "Лига справедливости",
-        "Ла-ла лэнд",
-        "Одержимость",
-        "Скотт Пилигрим против..."
-    ]
-};
+        if (newFilm) {
 
-const adv = document.querySelectorAll('.promo__adv img'),
-      poster = document.querySelector('.promo__bg'),
-      genre = poster.querySelector('.promo__genre'),
-      movieList = document.querySelector('.promo__interactive-list');
+            if (newFilm.length > 21) {
+                newFilm = `${newFilm.substring(0, 22)}...`;
+            }
 
-adv.forEach(item =>{
-    item.remove();
-});
+            if (favorite) {
+                console.log("Добавляем любимый фильм");
+            }
 
-genre.textContent = 'драма';
+            movieDB.movies.push(newFilm);
+            sortArr(movieDB.movies);
+    
+            createMovieList(movieDB.movies, movieList);
+        }
 
-poster.style.backgroundImage = 'url("img/bg.jpg")';
+        event.target.reset();
 
-movieList.innerHTML = "";
+    });
 
-movieDB.movies.sort();
+    const deleteAdv = (arr) => {
+        arr.forEach(item => {
+            item.remove();
+        });
+    };
 
+    const makeChanges = () => {
+        genre.textContent = 'драма';
 
-movieDB.movies.forEach((film, i) => {
-    movieList.innerHTML += `
-    <li class="promo__interactive-item">${i + 1} ${film}
-        <div class="delete"></div>
-    </li>
-    `;
-});  
+        poster.style.backgroundImage = 'url("img/bg.jpg")';
+    };
 
+    const sortArr = (arr) => {
+        arr.sort();
+    };
 
-const btns = document.querySelector('button'),
-      overlay = document.querySelector('.overlay');
- btn.onclick = function() {
-    alert('click');
-};
+    function createMovieList(films, parent) {
+        parent.innerHTML = "";
+        sortArr(films);
+    
+        films.forEach((film, i) => {
+            parent.innerHTML += `
+                <li class="promo__interactive-item">${i + 1} ${film}
+                    <div class="delete"></div>
+                </li>
+            `;
+        });
 
-btn.onclick = function() {
-    alert('Second click');
-};
- 
+        document.querySelectorAll('.delete').forEach((btn, i) => {
+            btn.addEventListener('click', () => {
+                btn.parentElement.remove();
+                movieDB.movies.splice(i, 1);
 
-// let i = 0
-const deleteElement = (e) => {
-    console.log(e.target);
-    console.log(e.type);
-    i++;
-    if (i ==1) {
-        btn.removeEventListener('click', deleteElement);
-    } 
-};
-
- btn.addEventListener('click', deleteElement);
-overlay.addEventListener('click', deleteElement); 
-
-btns.forEach(btn => {
-    btn.addEventListener('click', deleteElement, {once: true});
-});
-
-const link = document.querySelector('a');
-
-link.addEventListener('click', function(event){
-    event.preventDefault();
-
-    console.log(event.target);
-});
- */
-
-// console.log(document.head);
-// console.log(document.documentElement);
-// console.log(document.body.childNodes);
-// console.log(document.body.firstChild);
-// console.log(document.body.firstElementChild);
-// console.log(document.body.lastChild);
-
-// console.log(document.querySelector('current').parentNode.parentNode);
-// console.log(document.querySelector('current').parentElement);
-
-// console.log(document.querySelector('[data-current="3]').nextElementSibling);
-
-for (let node of document.body.childNodes) {
-    if (node.nodeName == '#text') {
-        continue;
+                createMovieList(films, parent);
+            });
+        });
     }
 
-    console.log(node);
-}
+    deleteAdv(adv);
+    makeChanges();
+    createMovieList(movieDB.movies, movieList);
+
+});
