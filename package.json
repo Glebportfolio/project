@@ -1,0 +1,23 @@
+{
+  "name": "food",
+  "version": "1.0.0",
+  "description": "it's my work",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "json-server": "^0.16.1"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Glebportfolio/project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Glebportfolio/project/issues"
+  },
+  "homepage": "https://github.com/Glebportfolio/project#readme"
+}
