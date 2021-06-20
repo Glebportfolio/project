@@ -192,36 +192,12 @@ window.addEventListener('DOMContentLoaded', function() {
         return await res.json();
     };
 
-/*     getResource('http://localhost:3000/menu')
+    getResource('http://localhost:3000/menu')
          .then(data => {
              data.forEach(({img, altimg, title, descr, price}) => {
                  new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
              });
-         }); */
-
-         getResource('http://localhost:3000/menu')
-             .then(data => createCard(data));
-
-        function createCard(data) {
-            data.forEach(({img, altimg, title, descr, price}) => {
-                const element =  document.createElement('div');
-
-                element.classList.add('menu__item');
-
-                element.innerHTML = `
-                    <img src=${img} alt=${altimg}>
-                    <h3 class="menu__item-subtitle">${title}</h3>
-                    <div class="menu__item-descr">${descr}</div>
-                    <div class="menu__item-divider"></div>
-                    <div class="menu__item-price">
-                        <div class="menu__item-cost">Цена:</div>
-                        <div class="menu__item-total"><span>${price}</span> грн/день</div>
-                    </div>
-                `;
-
-                document.querySelector('.menu .container').append(element);
-            });
-        }
+         });
 
     // Forms
 
@@ -311,11 +287,28 @@ window.addEventListener('DOMContentLoaded', function() {
         }, 4000);
     }
 
-    fetch('http://example.com/movies.json')
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data);
-  });
+    // Slider
+
+    const slides = document.querySelectorAll('.offer__slide'),
+          prev = document.querySelector('.offer__slider-prev'),
+          next = document.querySelector('.offer__slider-next');
+    let slideIndex = 1;
+    
+    function showSlides(n) {
+        if (n > slides.length) {
+            slideIndex = 1; 
+        }
+
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+
+        slides.forEach(item => item.style.display = 'none');
+
+        slides[slideIndex - 1].style.display = 'block';
+    }
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
 });
